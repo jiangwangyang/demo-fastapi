@@ -1,0 +1,3 @@
+DATABASE_RUL = "prod"
+DATABASE_USERNAME = "prod"
+DATABASE_PASSWORD = "prod"
