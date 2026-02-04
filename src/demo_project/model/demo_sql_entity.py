@@ -2,14 +2,14 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
-# 测试数据库实体
+# 演示数据库实体
 @dataclass
-class TestSqlEntity:
+class DemoSqlEntity:
     # 主键
     id: int
-    # 测试名称
+    # 演示名称
     name: str
-    # 测试描述
+    # 演示描述
     description: str
     # 创建时间
     created_at: datetime
