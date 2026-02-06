@@ -1,44 +1,40 @@
-# Demo FastAPI Project
+# {{项目名称}}
 
-这是一个基于FastAPI的演示项目，遵循特定的项目结构规范。
+{{项目简介（1-2句）}}
 
 ## 项目结构
 
 ```
 .
 ├── src/
-│   ├── demo_project/
+│   ├── {{project_name}}/
 │   │   ├── api/
-│   │   │   └── demo_api.py
+│   │   │   └── {{module}}_api.py
 │   │   ├── client/
-│   │   │   └── demo_sql_client.py
+│   │   │   └── {{module}}_client.py
 │   │   ├── config/
 │   │   │   ├── config.py
 │   │   │   ├── config_dev.py
 │   │   │   └── config_prod.py
 │   │   ├── model/
-│   │   │   ├── api_response.py
-│   │   │   ├── demo_dto.py
-│   │   │   ├── demo_sql_entity.py
-│   │   │   └── demo_vo.py
+│   │   │   ├── {{module}}_dto.py
+│   │   │   ├── {{module}}_entity.py
+│   │   │   └── {{module}}_vo.py
 │   │   ├── service/
-│   │   │   └── demo_service.py
+│   │   │   └── {{module}}_service.py
 │   │   ├── util/
-│   │   │   └── entity_util.py
+│   │   │   └── {{name}}_util.py
 │   │   └── application.py
 │   └── run_application.py
 ├── test/
-│   ├── demo_project_test/
+│   ├── {{project_name}}_test/
 │   │   └── application_test.py
 │   └── run_test.py
-├─ skills/
-├─ docs/
-├─ README.md
-├─ AGENTS.md
-├─ rules.md
-├─ pyproject.toml
-├─ uv.lock
-└─ .gitignore
+├── .gitignore
+├── AGENTS.md
+├── README.md
+├── pyproject.toml
+└── uv.lock
 ```
 
 - `api/` - 接口层，负责参数接收与校验
@@ -50,7 +46,7 @@
 
 ## API端点
 
-- `POST /demo` - 创建或获取项目
+- `{{METHOD}} {{/path}}` - {{描述}}
 
 ## 依赖安装
 
@@ -75,12 +71,12 @@ python run_application.py
 
 # 方法2：使用uvicorn命令
 cd src/
-uvicorn demo_project.application:app --host 0.0.0.0 --port 8080 --reload
+uvicorn {{project_name}}.application:app --host 0.0.0.0 --port {{port}} --reload
 
 # 生产环境启动
 # 使用uvicorn启动（不带热重载）（workers制定线程数）
 cd src/
-uvicorn demo_project.application:app --host 0.0.0.0 --port 8080 --workers 4
+uvicorn {{project_name}}.application:app --host 0.0.0.0 --port {{port}} --workers {{workers}}
 ```
 
 ## 运行测试
@@ -96,5 +92,5 @@ pytest .
 
 # 运行特定测试文件
 cd test/
-pytest demo_project_test/application_test.py
+pytest {{project_name}}_test/application_test.py
 ```
