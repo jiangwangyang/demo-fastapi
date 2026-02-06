@@ -1,3 +1,3 @@
-DATABASE_RUL = "prod"
+DATABASE_URL = "prod"
 DATABASE_USERNAME = "prod"
 DATABASE_PASSWORD = "prod"

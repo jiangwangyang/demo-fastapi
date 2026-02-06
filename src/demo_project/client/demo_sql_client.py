@@ -1,8 +1,7 @@
 import logging
 from datetime import datetime
-from typing import Optional, List
+from typing import List
 
-from ..config.config import DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD
 from ..model.demo_sql_entity import DemoSqlEntity
 
 _log = logging.getLogger(__name__)
@@ -28,7 +27,7 @@ class DemoSqlClient:
         return list(self._storage.values())
 
     # 根据ID获取实体
-    def get_by_id(self, entity_id: int) -> Optional[DemoSqlEntity]:
+    def get_by_id(self, entity_id: int) -> DemoSqlEntity | None:
         return self._storage.get(entity_id)
 
     # 根据ID保存实体
@@ -53,14 +52,19 @@ class DemoSqlClient:
         return False
 
 
+# 演示实体数据库操作类实例
+_demo_sql_client: DemoSqlClient | None = None
+
+
 # 创建演示实体数据库操作类实例
-_log.info("Creating demo sql client")
-_log.info("Using database url: %s", DATABASE_URL)
-_log.info("Using database username: %s", DATABASE_USERNAME)
-_log.info("Using database password: %s", DATABASE_PASSWORD)
-_demo_sql_client = DemoSqlClient(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD)
+def create_demo_sql_client(url: str, username: str, password: str) -> DemoSqlClient:
+    global _demo_sql_client
+    _demo_sql_client = DemoSqlClient(url, username, password)
+    return _demo_sql_client
 
 
 # 获取演示实体数据库操作类实例
 def get_demo_sql_client() -> DemoSqlClient:
+    if _demo_sql_client is None:
+        raise RuntimeError("DemoSqlClient has not been created")
     return _demo_sql_client

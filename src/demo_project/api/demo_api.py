@@ -24,3 +24,9 @@ def get_or_create_item(
     vo: DemoVO = DemoVO(entity.id, entity.name, entity.description)
     # 返回API响应
     return ApiResponse(data=vo)
+
+
+# 测试异常接口
+@router.post("/error")
+def error():
+    raise RuntimeError("This is a demo error")

@@ -2,9 +2,9 @@ import importlib
 import os
 
 # 显式声明模块的公共导出变量
-DATABASE_URL: str = None
-DATABASE_USERNAME: str = None
-DATABASE_PASSWORD: str = None
+DATABASE_URL: str = ""
+DATABASE_USERNAME: str = ""
+DATABASE_PASSWORD: str = ""
 
 # 1. 读取环境变量，指定环境标识（默认开发环境 dev，防止未配置时报错）
 ENV = os.getenv("ENVIRONMENT", "dev").strip().lower()

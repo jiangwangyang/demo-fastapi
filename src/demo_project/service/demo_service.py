@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 
-from ..client.demo_sql_client import DemoSqlClient, get_demo_sql_client
+from ..client.demo_sql_client import DemoSqlClient
 from ..model.demo_sql_entity import DemoSqlEntity
 
 _log = logging.getLogger(__name__)
@@ -33,11 +33,19 @@ class DemoService:
         return entity
 
 
-# 创建演示实体数据库操作类实例
-_log.info("Creating demo service")
-_demo_service = DemoService(get_demo_sql_client())
+# 演示实体数据库操作类实例
+_demo_service: DemoService | None = None
+
+
+# 创建演示服务类实例
+def create_demo_service(demo_sql_client: DemoSqlClient) -> DemoService:
+    global _demo_service
+    _demo_service = DemoService(demo_sql_client)
+    return _demo_service
 
 
 # 获取演示服务类实例
 def get_demo_service() -> DemoService:
+    if _demo_service is None:
+        raise RuntimeError("DemoService has not been created")
     return _demo_service
